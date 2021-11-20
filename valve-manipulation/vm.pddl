@@ -1,4 +1,4 @@
-(define (domain auvs_inspection)
+(define (domain valve-manipulation)
 (:requirements :strips :typing :fluents :negative-preconditions :disjunctive-preconditions :durative-actions :duration-inequalities :universal-preconditions :timed-initial-literals )
 (:types
 

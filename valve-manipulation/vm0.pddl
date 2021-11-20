@@ -1,5 +1,5 @@
-(define (problem task)
-(:domain auvs_inspection)
+(define (problem vm0)
+(:domain valve-manipulation)
 (:objects
     auv0 auv1 auv2 auv3 auv4 asv0 asv1 asv2 - robot
     wp0 wp1 wp2 wp3 wp4 wp10 wp11 wp12 wp13 wp14 wp30 wp31 wp32 wp33 wp34 wp35 wp40 wp41
