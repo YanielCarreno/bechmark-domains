@@ -3,13 +3,13 @@
 (:objects
     auv0 auv1 auv2 auv3 auv4 asv0 asv1 asv2 - robot
     wp0 wp1 wp2 wp3 wp4 wp10 wp11 wp12 wp13 wp14 wp30 wp31 wp32 wp33 wp34 wp35 wp40 wp41
-    wp42 wp43 wp44 wp45 wp50 wp51 wp52 wp53 wp54 wp55 wp60 wp61 wp62 wp63 wp64 wp65 wp70 
+    wp42 wp43 wp44 wp45 wp50 wp51 wp52 wp53 wp54 wp55 wp60 wp61 wp62 wp63 wp64 wp65 wp70
     wp71 wp72 wp73 wp74 wp75 wp80 wp81 wp82 wp83 wp84 wp85 - waypoint
     arm2 arm3 arm4 - actuator
-    c0 c1  c2 c3 c4 
-    s_rock0 s_rock1 s_rock2 s_rock3 
-    s_soil0 s_soil1 s_soil2 s_soil3
-    s2 s3 s4 
+    c0 c1  c2 c3 c4
+    sr0 sr1 sr2 sr3
+    ss0 ss1 ss2 ss3
+    s2 s3 s4
     cm2 cm3 cm4 - sensor
     on off - state
 
@@ -35,7 +35,7 @@
     (available asv0)
     (available asv1)
     (available asv2)
-    
+
     (can_manipulate auv2 arm2)
     (can_manipulate auv3 arm3)
     (can_manipulate auv4 arm4)
@@ -46,13 +46,13 @@
     (can_visualise auv3 c3)
     (can_visualise auv4 c4)
 
-    (can_collect_rock auv0 s_rock0)
-    (can_collect_rock auv1 s_rock1)
-    (can_collect_rock auv2 s_rock2)
+    (can_collect_rock auv0 sr0)
+    (can_collect_rock auv1 sr1)
+    (can_collect_rock auv2 sr2)
 
-    (can_collect_soil auv0 s_rock0)
-    (can_collect_soil auv1 s_rock1)
-    (can_collect_soil auv2 s_rock2)
+    (can_collect_soil auv0 sr0)
+    (can_collect_soil auv1 sr1)
+    (can_collect_soil auv2 sr2)
 
     (can_inspect_structure auv2 s2)
     (can_inspect_structure auv3 s3)
@@ -141,7 +141,7 @@
     (valve_at wp62)
     (valve_at wp72)
     (valve_at wp82)
-    
+
     (valve_state wp12 on)
     (valve_state wp32 on)
     (valve_state wp42 on)
@@ -2283,7 +2283,7 @@
     (= (speed asv0) 0.5)
     (= (speed asv1) 0.5)
     (= (speed asv2) 0.5)
-  
+
 
     (= (consumption asv0) 0.001)
     (= (consumption asv1) 0.001)
@@ -2323,7 +2323,7 @@
     (= (total-distance) 0)
 
 
-    
+
 )
 (:goal (and
     (valve_inspected wp12)
