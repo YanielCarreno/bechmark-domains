@@ -177,7 +177,7 @@
            (over all (can_map ?r ?s))           
            (at start (available ?r))
            (at start (at ?r ?wpi))
-           (at start (>= (energy ?r) (* (distance ?wpi ?wpf)(consumption ?r))))           
+           (at start (>= (energy ?r) (* (/ (distance ?wpi ?wpf) (speed ?r)) (consumption ?r))))           
            )
 :effect (and
         (at start (not (available ?r)))
@@ -186,6 +186,7 @@
         (at end (section_mapped ?wpf))
         (at end (available ?r))
         (at end (increase (total-distance) (distance ?wpi ?wpf)))
+        (at end (decrease (energy ?r) (* ?duration (consumption ?r))))
         )
 )
 
@@ -197,8 +198,8 @@
            (over all (free_point ?wpf))
            (at start (available ?r))
            (at start (at ?r ?wpi))
-           (at start (>= (energy ?r) (* (distance ?wpi ?wpf)(consumption ?r))))
-           )
+           (at start (>= (energy ?r) (* (/ (distance ?wpi ?wpf) (speed ?r)) (consumption ?r))))
+           )  
 :effect (and
         (at start (not (available ?r)))
         (at start (not (at ?r ?wpi)))
@@ -206,7 +207,7 @@
         (at end   (explored ?wpf))
         (at end   (available ?r))
         (at end   (increase (total-distance) (distance ?wpi ?wpf)))
-        (at end   (decrease (energy ?r) (* (distance ?wpi ?wpf)(consumption ?r))))
+        (at end   (decrease (energy ?r) (* ?duration (consumption ?r))))
         )
 )
 
