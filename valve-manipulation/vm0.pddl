@@ -5,12 +5,11 @@
     wp0 wp1 wp2 wp3 wp4 wp10 wp11 wp12 wp13 wp14 wp30 wp31 wp32 wp33 wp34 wp35 wp40 wp41
     wp42 wp43 wp44 wp45 wp50 wp51 wp52 wp53 wp54 wp55 wp60 wp61 wp62 wp63 wp64 wp65 wp70
     wp71 wp72 wp73 wp74 wp75 wp80 wp81 wp82 wp83 wp84 wp85 - waypoint
-    arm2 arm3 arm4 - actuator
-    c0 c1  c2 c3 c4
-    sr0 sr1 sr2 sr3
-    ss0 ss1 ss2 ss3
-    s2 s3 s4
-    cm2 cm3 cm4 - sensor
+    arm2 arm3 arm4 sc0 sc1 sc2 sc3 - actuator
+    cad2 cad3 cad4
+    cac0 cac1 cac2 cac3    
+    sonar2 sonar3 sonar4
+    camera2 camera3 camera4 - sensor
     on off - state
 
 )
