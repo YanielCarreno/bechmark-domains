@@ -1,0 +1,99 @@
+non-fluents nf_orca_inspection_inst_mdp__husky1 {
+    domain = orca_inspection_mdp;
+
+    objects {
+        robot : {husky1};
+        waypoint : {wpg1, wpg52, wpg35, wpg34, wpg0};
+        obj : {poi_pressure_wpg52, poi_valve_wpg35, poi_temperature_wpg34};
+        other_robot : {husky0, uav0};
+    };
+
+    non-fluents {
+
+        COST_INSPECT_POI(husky1, poi_pressure_wpg52) = -10.0;
+        COST_INSPECT_POI(husky1, poi_temperature_wpg34) = -10.0;
+        COST_INSPECT_POI(husky1, poi_valve_wpg35) = -25.0;
+        COST_LOCALISE(husky1) = -3;
+        COST_LOCATE_POI(husky1, poi_pressure_wpg52) = -10.0;
+        COST_LOCATE_POI(husky1, poi_temperature_wpg34) = -10.0;
+        COST_LOCATE_POI(husky1, poi_valve_wpg35) = -25.0;
+        COST_MOVE(husky1, wpg0, wpg0) = 0;
+        COST_MOVE(husky1, wpg0, wpg1) = -81.7185;
+        COST_MOVE(husky1, wpg0, wpg34) = -126.357;
+        COST_MOVE(husky1, wpg0, wpg35) = -152.117;
+        COST_MOVE(husky1, wpg0, wpg52) = -182.284;
+        COST_MOVE(husky1, wpg1, wpg0) = -81.7185;
+        COST_MOVE(husky1, wpg1, wpg1) = 0;
+        COST_MOVE(husky1, wpg1, wpg34) = -107.421;
+        COST_MOVE(husky1, wpg1, wpg35) = -81.6608;
+        COST_MOVE(husky1, wpg1, wpg52) = -163.348;
+        COST_MOVE(husky1, wpg34, wpg0) = -126.357;
+        COST_MOVE(husky1, wpg34, wpg1) = -107.421;
+        COST_MOVE(husky1, wpg34, wpg34) = 0;
+        COST_MOVE(husky1, wpg34, wpg35) = -22.76;
+        COST_MOVE(husky1, wpg34, wpg52) = -52.927;
+        COST_MOVE(husky1, wpg35, wpg0) = -152.117;
+        COST_MOVE(husky1, wpg35, wpg1) = -81.6608;
+        COST_MOVE(husky1, wpg35, wpg34) = -22.76;
+        COST_MOVE(husky1, wpg35, wpg35) = 0;
+        COST_MOVE(husky1, wpg35, wpg52) = -78.687;
+        COST_MOVE(husky1, wpg52, wpg0) = -182.284;
+        COST_MOVE(husky1, wpg52, wpg1) = -163.348;
+        COST_MOVE(husky1, wpg52, wpg34) = -52.927;
+        COST_MOVE(husky1, wpg52, wpg35) = -78.687;
+        COST_MOVE(husky1, wpg52, wpg52) = 0;
+        COST_REPAIR_CAMERA(husky1) = -5;
+        COST_REPAIR_MANIPULATOR(husky1) = -5;
+        HAS_MANIPULATOR(husky1) = true;
+        PROB_DAMAGED_CAMERA(husky1) = 0.08;
+        PROB_DAMAGED_MANIPULATOR(husky1) = 0.05;
+        PROB_FOUND(husky1, poi_pressure_wpg52) = 1.0;
+        PROB_FOUND(husky1, poi_temperature_wpg34) = 1.0;
+        PROB_FOUND(husky1, poi_valve_wpg35) = 1.0;
+        PROB_FOUND_DAMAGED(husky1, poi_pressure_wpg52) = 0.2;
+        PROB_FOUND_DAMAGED(husky1, poi_temperature_wpg34) = 0.2;
+        PROB_FOUND_DAMAGED(husky1, poi_valve_wpg35) = 0.2;
+        PROB_IMAGE_TAKEN(husky1, poi_pressure_wpg52) = 1.0;
+        PROB_IMAGE_TAKEN(husky1, poi_temperature_wpg34) = 1.0;
+        PROB_IMAGE_TAKEN(husky1, poi_valve_wpg35) = 1.0;
+        PROB_IMAGE_TAKEN_DAMAGED(husky1, poi_pressure_wpg52) = 0.2;
+        PROB_IMAGE_TAKEN_DAMAGED(husky1, poi_temperature_wpg34) = 0.2;
+        PROB_IMAGE_TAKEN_DAMAGED(husky1, poi_valve_wpg35) = 0.2;
+        PROB_INSPECTED(husky1, poi_pressure_wpg52) = 1.0;
+        PROB_INSPECTED(husky1, poi_temperature_wpg34) = 1.0;
+        PROB_INSPECTED(husky1, poi_valve_wpg35) = 1.0;
+        PROB_INSPECTED_DAMAGED(husky1, poi_pressure_wpg52) = 0.2;
+        PROB_INSPECTED_DAMAGED(husky1, poi_temperature_wpg34) = 0.2;
+        PROB_INSPECTED_DAMAGED(husky1, poi_valve_wpg35) = 0.2;
+        PROB_LOCALISED(husky1) = 0.9;
+        PROB_VALVE_TURNED(husky1, poi_pressure_wpg52) = 1.0;
+        PROB_VALVE_TURNED(husky1, poi_temperature_wpg34) = 1.0;
+        PROB_VALVE_TURNED(husky1, poi_valve_wpg35) = 1.0;
+        PROB_VALVE_TURNED_DAMAGED(husky1, poi_pressure_wpg52) = 0.2;
+        PROB_VALVE_TURNED_DAMAGED(husky1, poi_temperature_wpg34) = 0.2;
+        PROB_VALVE_TURNED_DAMAGED(husky1, poi_valve_wpg35) = 0.2;
+        BASE(wpg0);
+        GOAL_POI_INSPECTED(poi_pressure_wpg52);
+        GOAL_POI_INSPECTED(poi_temperature_wpg34);
+        GOAL_VALVE_TURNED(poi_valve_wpg35);
+        POI_AT(poi_pressure_wpg52, wpg52);
+        POI_AT(poi_temperature_wpg34, wpg34);
+        POI_AT(poi_valve_wpg35, wpg35);
+        VALVE_AT(poi_valve_wpg35);
+        // make sure TASK_REWARD > COST of actions! else reaching a subgoal will give negative immediate reward
+        TASK_REWARD = 500;
+        // OTHER_ROBOT_AT(uav0, wpg31);
+        // OTHER_ROBOT_AT(husky0, wpg31);
+    };
+}
+
+instance orca_inspection_inst_mdp__husky1 {
+    domain = orca_inspection_mdp;
+    non-fluents = nf_orca_inspection_inst_mdp__husky1;
+    init-state {
+        robot_at(husky1, wpg1);
+    };
+    max-nondef-actions = 1;
+    horizon = 40;
+    discount = 1.00;
+}

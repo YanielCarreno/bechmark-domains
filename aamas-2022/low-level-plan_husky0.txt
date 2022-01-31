@@ -1,0 +1,5 @@
+localise(husky0)
+goto_waypoint(husky0, wpg0, wpg31)
+locate_poi(husky0, poi_valve_wpg31)
+inspect_poi(husky0, poi_valve_wpg31)
+manipulate_valve(husky0, poi_valve_wpg31)

@@ -1,0 +1,108 @@
+non-fluents nf_orca_inspection_inst_mdp__uav0 {
+    domain = orca_inspection_mdp;
+
+    objects {
+        robot : {uav0};
+        waypoint : {wpa0, wpa35, wpa31, wpa21, wpa20};
+        obj : {poi_wpa21, poi_valve_wpa35, poi_valve_wpa31, poi_wpa20};
+        other_robot : {husky1, husky0};
+    };
+
+    non-fluents {
+
+        COST_INSPECT_POI(uav0, poi_valve_wpa31) = -15.0;
+        COST_INSPECT_POI(uav0, poi_valve_wpa35) = -15.0;
+        COST_LOCALISE(uav0) = -3;
+        COST_LOCATE_POI(uav0, poi_valve_wpa31) = -15.0;
+        COST_LOCATE_POI(uav0, poi_valve_wpa35) = -15.0;
+        COST_MOVE(uav0, wpa0, wpa0) = 0;
+        COST_MOVE(uav0, wpa0, wpa20) = -118.308;
+        COST_MOVE(uav0, wpa0, wpa21) = -120.996;
+        COST_MOVE(uav0, wpa0, wpa31) = -93.5922;
+        COST_MOVE(uav0, wpa0, wpa35) = -108.496;
+        COST_MOVE(uav0, wpa20, wpa0) = -118.308;
+        COST_MOVE(uav0, wpa20, wpa20) = 0;
+        COST_MOVE(uav0, wpa20, wpa21) = -58.9169;
+        COST_MOVE(uav0, wpa20, wpa31) = -31.512700000000002;
+        COST_MOVE(uav0, wpa20, wpa35) = -71.4169;
+        COST_MOVE(uav0, wpa21, wpa0) = -120.996;
+        COST_MOVE(uav0, wpa21, wpa20) = -58.9169;
+        COST_MOVE(uav0, wpa21, wpa21) = 0;
+        COST_MOVE(uav0, wpa21, wpa31) = -24.4042;
+        COST_MOVE(uav0, wpa21, wpa35) = -9.5;
+        COST_MOVE(uav0, wpa31, wpa0) = -93.5922;
+        COST_MOVE(uav0, wpa31, wpa20) = -31.512700000000002;
+        COST_MOVE(uav0, wpa31, wpa21) = -24.4042;
+        COST_MOVE(uav0, wpa31, wpa31) = 0;
+        COST_MOVE(uav0, wpa31, wpa35) = -36.9042;
+        COST_MOVE(uav0, wpa35, wpa0) = -108.496;
+        COST_MOVE(uav0, wpa35, wpa20) = -71.4169;
+        COST_MOVE(uav0, wpa35, wpa21) = -9.5;
+        COST_MOVE(uav0, wpa35, wpa31) = -36.9042;
+        COST_MOVE(uav0, wpa35, wpa35) = 0;
+        COST_REPAIR_CAMERA(uav0) = -5;
+        COST_REPAIR_MANIPULATOR(uav0) = -5;
+        HAS_MANIPULATOR(uav0) = false;
+        PROB_DAMAGED_CAMERA(uav0) = 0.08;
+        PROB_DAMAGED_MANIPULATOR(uav0) = 0.0;
+        PROB_FOUND(uav0, poi_valve_wpa31) = 1.0;
+        PROB_FOUND(uav0, poi_valve_wpa35) = 1.0;
+        PROB_FOUND(uav0, poi_wpa20) = 1.0;
+        PROB_FOUND(uav0, poi_wpa21) = 1.0;
+        PROB_FOUND_DAMAGED(uav0, poi_valve_wpa31) = 0.2;
+        PROB_FOUND_DAMAGED(uav0, poi_valve_wpa35) = 0.2;
+        PROB_FOUND_DAMAGED(uav0, poi_wpa20) = 0.2;
+        PROB_FOUND_DAMAGED(uav0, poi_wpa21) = 0.2;
+        PROB_IMAGE_TAKEN(uav0, poi_valve_wpa31) = 1.0;
+        PROB_IMAGE_TAKEN(uav0, poi_valve_wpa35) = 1.0;
+        PROB_IMAGE_TAKEN(uav0, poi_wpa20) = 1.0;
+        PROB_IMAGE_TAKEN(uav0, poi_wpa21) = 1.0;
+        PROB_IMAGE_TAKEN_DAMAGED(uav0, poi_valve_wpa31) = 0.2;
+        PROB_IMAGE_TAKEN_DAMAGED(uav0, poi_valve_wpa35) = 0.2;
+        PROB_IMAGE_TAKEN_DAMAGED(uav0, poi_wpa20) = 0.2;
+        PROB_IMAGE_TAKEN_DAMAGED(uav0, poi_wpa21) = 0.2;
+        PROB_INSPECTED(uav0, poi_valve_wpa31) = 1.0;
+        PROB_INSPECTED(uav0, poi_valve_wpa35) = 1.0;
+        PROB_INSPECTED(uav0, poi_wpa20) = 1.0;
+        PROB_INSPECTED(uav0, poi_wpa21) = 1.0;
+        PROB_INSPECTED_DAMAGED(uav0, poi_valve_wpa31) = 0.2;
+        PROB_INSPECTED_DAMAGED(uav0, poi_valve_wpa35) = 0.2;
+        PROB_INSPECTED_DAMAGED(uav0, poi_wpa20) = 0.2;
+        PROB_INSPECTED_DAMAGED(uav0, poi_wpa21) = 0.2;
+        PROB_LOCALISED(uav0) = 0.9;
+        PROB_VALVE_TURNED(uav0, poi_valve_wpa31) = 1.0;
+        PROB_VALVE_TURNED(uav0, poi_valve_wpa35) = 1.0;
+        PROB_VALVE_TURNED(uav0, poi_wpa20) = 1.0;
+        PROB_VALVE_TURNED(uav0, poi_wpa21) = 1.0;
+        PROB_VALVE_TURNED_DAMAGED(uav0, poi_valve_wpa31) = 0.2;
+        PROB_VALVE_TURNED_DAMAGED(uav0, poi_valve_wpa35) = 0.2;
+        PROB_VALVE_TURNED_DAMAGED(uav0, poi_wpa20) = 0.2;
+        PROB_VALVE_TURNED_DAMAGED(uav0, poi_wpa21) = 0.2;
+        BASE(wpa0);
+        GOAL_POI_IMAGE_TAKEN(poi_wpa20);
+        GOAL_POI_IMAGE_TAKEN(poi_wpa21);
+        GOAL_POI_INSPECTED(poi_valve_wpa31);
+        GOAL_POI_INSPECTED(poi_valve_wpa35);
+        POI_AT(poi_valve_wpa31, wpa31);
+        POI_AT(poi_valve_wpa35, wpa35);
+        POI_AT(poi_wpa20, wpa20);
+        POI_AT(poi_wpa21, wpa21);
+        VALVE_AT(poi_valve_wpa31);
+        VALVE_AT(poi_valve_wpa35);
+        // make sure TASK_REWARD > COST of actions! else reaching a subgoal will give negative immediate reward
+        TASK_REWARD = 500;
+        // OTHER_ROBOT_AT(uav0, wpg31);
+        // OTHER_ROBOT_AT(husky0, wpg31);
+    };
+}
+
+instance orca_inspection_inst_mdp__uav0 {
+    domain = orca_inspection_mdp;
+    non-fluents = nf_orca_inspection_inst_mdp__uav0;
+    init-state {
+        robot_at(uav0, wpa0);
+    };
+    max-nondef-actions = 1;
+    horizon = 40;
+    discount = 1.00;
+}

@@ -1,0 +1,22 @@
+; Plan found with metric 467.458
+; States evaluated so far: 41
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 0.12
+0.000: (navigation husky1 wpg1 wpg52)  [166.348]
+0.000: (navigation husky0 wpg0 wpg31)  [115.180]
+0.000: (navigation uav0 wpa0 wpa35)  [111.496]
+111.497: (navigation uav0 wpa35 wpa31)  [39.904]
+115.182: (valve_inspection husky0 camera_h0 wpg31)  [50.000]
+151.402: (navigation uav0 wpa31 wpa21)  [27.403]
+166.349: (check_pressure husky1 pressure_analyser1 wpg52)  [20.000]
+178.806: (take_image uav0 camera_q0 wpa21)  [15.000]
+186.350: (navigation husky1 wpg52 wpg35)  [81.686]
+193.807: (navigation uav0 wpa21 wpa35)  [12.500]
+268.037: (valve_inspection husky1 camera_h1 wpg35)  [50.000]
+318.038: (manipulate_valve husky1 uav0 camera_q0 arm1 wpg35 wpa35)  [30.000]
+348.039: (navigation husky1 wpg35 wpg34)  [25.760]
+348.039: (navigation uav0 wpa35 wpa31)  [39.904]
+373.800: (check_temperature husky1 temperature_analyser1 wpg34)  [20.000]
+387.944: (manipulate_valve husky0 uav0 camera_q0 arm0 wpg31 wpa31)  [30.000]
+417.945: (navigation uav0 wpa31 wpa20)  [34.512]
+452.458: (take_image uav0 camera_q0 wpa20)  [15.000]

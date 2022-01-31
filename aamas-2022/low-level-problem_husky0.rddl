@@ -1,0 +1,54 @@
+non-fluents nf_orca_inspection_inst_mdp__husky0 {
+    domain = orca_inspection_mdp;
+
+    objects {
+        robot : {husky0};
+        waypoint : {wpg0, wpg31};
+        obj : {poi_valve_wpg31};
+        other_robot : {husky1, uav0};
+    };
+
+    non-fluents {
+
+        COST_INSPECT_POI(husky0, poi_valve_wpg31) = -25.0;
+        COST_LOCALISE(husky0) = -3;
+        COST_LOCATE_POI(husky0, poi_valve_wpg31) = -25.0;
+        COST_MOVE(husky0, wpg0, wpg0) = 0;
+        COST_MOVE(husky0, wpg0, wpg31) = -112.181;
+        COST_MOVE(husky0, wpg31, wpg0) = -112.181;
+        COST_MOVE(husky0, wpg31, wpg31) = 0;
+        COST_REPAIR_CAMERA(husky0) = -5;
+        COST_REPAIR_MANIPULATOR(husky0) = -5;
+        HAS_MANIPULATOR(husky0) = true;
+        PROB_DAMAGED_CAMERA(husky0) = 0.08;
+        PROB_DAMAGED_MANIPULATOR(husky0) = 0.05;
+        PROB_FOUND(husky0, poi_valve_wpg31) = 1.0;
+        PROB_FOUND_DAMAGED(husky0, poi_valve_wpg31) = 0.2;
+        PROB_IMAGE_TAKEN(husky0, poi_valve_wpg31) = 1.0;
+        PROB_IMAGE_TAKEN_DAMAGED(husky0, poi_valve_wpg31) = 0.2;
+        PROB_INSPECTED(husky0, poi_valve_wpg31) = 1.0;
+        PROB_INSPECTED_DAMAGED(husky0, poi_valve_wpg31) = 0.2;
+        PROB_LOCALISED(husky0) = 0.9;
+        PROB_VALVE_TURNED(husky0, poi_valve_wpg31) = 1.0;
+        PROB_VALVE_TURNED_DAMAGED(husky0, poi_valve_wpg31) = 0.2;
+        BASE(wpg0);
+        GOAL_VALVE_TURNED(poi_valve_wpg31);
+        POI_AT(poi_valve_wpg31, wpg31);
+        VALVE_AT(poi_valve_wpg31);
+        // make sure TASK_REWARD > COST of actions! else reaching a subgoal will give negative immediate reward
+        TASK_REWARD = 500;
+        // OTHER_ROBOT_AT(uav0, wpg31);
+        // OTHER_ROBOT_AT(husky0, wpg31);
+    };
+}
+
+instance orca_inspection_inst_mdp__husky0 {
+    domain = orca_inspection_mdp;
+    non-fluents = nf_orca_inspection_inst_mdp__husky0;
+    init-state {
+        robot_at(husky0, wpg0);
+    };
+    max-nondef-actions = 1;
+    horizon = 40;
+    discount = 1.00;
+}
