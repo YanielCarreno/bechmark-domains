@@ -3,22 +3,22 @@
 (:objects
 
     auv0 auv1 auv2 auv3 auv4 asv0 asv1 asv2 - robot
-    wp0 wp1 wp2 wp3 wp4 wp10 wp11 wp12 wp13 wp14 wp30 
-    wp31 wp32 wp33 wp34 wp35 wp40 wp41 wp42 wp43 wp44 
+    wp0 wp1 wp2 wp3 wp4 wp10 wp11 wp12 wp13 wp14 wp30
+    wp31 wp32 wp33 wp34 wp35 wp40 wp41 wp42 wp43 wp44
     wp45 wp50 wp51 wp52 wp53 wp54 wp55 wp60 wp61 wp62
-    wp63 wp64 wp65 wp70 wp71 wp72 wp73 wp74 wp75 wp80 
+    wp63 wp64 wp65 wp70 wp71 wp72 wp73 wp74 wp75 wp80
     wp81 wp82 wp83 wp84 wp85 - waypoint
     arm2 arm3 arm4 - actuator
     c0 c1  c2 c3 c4
-    s_rock0 s_rock1 s_rock2 s_rock3
-    s_soil0 s_soil1 s_soil2 s_soil3
+    s_rock0 s_rock1 s_rock2 s_rock3 s_rock4
+    s_soil0 s_soil1 s_soil2 s_soil3 s_soil4
     s2 s3 s4
     cm2 cm3 cm4 - sensor
     on off - state
 
 )
 (:init
-    
+
     (at auv0 wp0)
     (at auv1 wp1)
     (at auv2 wp2)
@@ -36,7 +36,7 @@
     (available asv0)
     (available asv1)
     (available asv2)
-    
+
     (can_manipulate auv2 arm2)
     (can_manipulate auv3 arm3)
     (can_manipulate auv4 arm4)
@@ -50,15 +50,18 @@
     (can_classify_rock auv0 s_rock0)
     (can_classify_rock auv1 s_rock1)
     (can_classify_rock auv2 s_rock2)
-    
+    (can_classify_rock auv3 s_rock3)
+    (can_classify_rock auv4 s_rock4)
+
     (can_classify_soil auv0 s_soil0)
     (can_classify_soil auv1 s_soil1)
     (can_classify_soil auv2 s_soil2)
-    
+    (can_classify_soil auv3 s_soil3)
+    (can_classify_soil auv4 s_soil4)
+
     (can_collect auv2 arm2)
     (can_collect auv3 arm3)
     (can_collect auv4 arm4)
-
 
     (can_inspect auv2 s2)
     (can_inspect auv3 s3)
@@ -72,13 +75,17 @@
     (can_identify auv3 cm3)
     (can_identify auv4 cm4)
 
+    (can_recharge asv0)
+    (can_recharge asv1)
+    (can_recharge asv2)
+
     (surface_point wp30)
     (surface_point wp40)
     (surface_point wp50)
     (surface_point wp60)
     (surface_point wp70)
     (surface_point wp80)
-    
+
     (= (take_image_dur) 2)
     (= (rock_inspection_dur) 10)
     (= (soil_inspection_dur) 10)
@@ -94,14 +101,33 @@
     (at 900 (recharge_deliverable wp70))
     (at 1000 (recharge_deliverable wp80))
 
-    (at 500 (not (recharge_deliverable wp40)))    
-    (at 1500 (not (recharge_deliverable wp30)))    
+    (at 1500 (not (recharge_deliverable wp30)))
     (at 2500 (not (recharge_deliverable wp50)))
     (at 2700 (not (recharge_deliverable wp80)))
-    
+
     (= (cr_rate_a  auv0) 0.055)
     (= (cr_rate_sd auv0) 0.054)
     (= (cr_rate_sc auv0) 0.002)
+
+    (= (cr_rate_a  auv1) 0.055)
+    (= (cr_rate_sd auv1) 0.054)
+    (= (cr_rate_sc auv1) 0.002)
+
+    (= (cr_rate_a  auv2) 0.055)
+    (= (cr_rate_sd auv2) 0.054)
+    (= (cr_rate_sc auv2) 0.002)
+
+    (= (cr_rate_a  auv3) 0.055)
+    (= (cr_rate_sd auv3) 0.054)
+    (= (cr_rate_sc auv3) 0.002)
+
+    (= (cr_rate_a  auv4) 0.055)
+    (= (cr_rate_sd auv4) 0.054)
+    (= (cr_rate_sc auv4) 0.002)
+
+    (= (cr_rate_a  asv0) 0.027)
+    (= (cr_rate_a  asv1) 0.027)
+    (= (cr_rate_a  asv2) 0.027)
 
 
     (free_point wp0)
@@ -126,26 +152,32 @@
     (structure_point wp12)
     (structure_point wp13)
     (structure_point wp14)
+
     (structure_point wp31)
     (structure_point wp32)
     (structure_point wp33)
     (structure_point wp34)
+
     (structure_point wp41)
     (structure_point wp42)
     (structure_point wp43)
     (structure_point wp44)
+
     (structure_point wp51)
     (structure_point wp52)
     (structure_point wp53)
     (structure_point wp54)
+
     (structure_point wp61)
     (structure_point wp62)
     (structure_point wp63)
     (structure_point wp64)
+
     (structure_point wp71)
     (structure_point wp72)
     (structure_point wp73)
     (structure_point wp74)
+
     (structure_point wp81)
     (structure_point wp82)
     (structure_point wp83)
@@ -2290,7 +2322,7 @@
     (= (speed auv2) 0.5)
     (= (speed auv3) 0.5)
     (= (speed auv4) 0.5)
- 
+
     (= (speed asv0) 1.5)
     (= (speed asv1) 1.5)
     (= (speed asv2) 1.5)
@@ -2319,31 +2351,116 @@
     (= (energy auv3) 100)
     (= (energy auv4) 100)
 
+    (= (energy asv0) 100)
+    (= (energy asv1) 100)
+    (= (energy asv2) 100)
+
+
     (= (total-distance) 0)
 
 )
 (:goal (and
-    (valve_sensed  wp12)
-    (section_mapped wp12)
-    (section_mapped wp13)
-    (section_mapped wp14)
-    (section_mapped wp31)
-    (section_mapped wp32)
-    (section_mapped wp33)
-    (section_mapped wp34)
-    (soil_inspected wp62)
+
+    ;(section_mapped wp11)
+    ;(section_mapped wp12)
+    ;(section_mapped wp13)
+    ;(section_mapped wp14)
+    ;(section_mapped wp31)
+    ;(section_mapped wp32)
+    ;(section_mapped wp33)
+    ;(section_mapped wp34)
+    ;(section_mapped wp41)
+    ;(section_mapped wp42)
+    ;(section_mapped wp43)
+    ;(section_mapped wp44)
+    ;(section_mapped wp51)
+    ;(section_mapped wp52)
+    ;(section_mapped wp53)
+    ;(section_mapped wp54)
+    ;(section_mapped wp61)
+    ;(section_mapped wp62)
+    ;(section_mapped wp63)
+    ;(section_mapped wp64)
+    ;(section_mapped wp71)
+    ;(section_mapped wp72)
+    ;(section_mapped wp73)
+    ;(section_mapped wp74)
+    ;(section_mapped wp81)
+    ;(section_mapped wp82)
+    ;(section_mapped wp83)
+    ;(section_mapped wp84)
+    ;(section_mapped wp85)
+
+    ;(structure_located wp11)
+    ;(structure_located wp12)
+    ;(structure_located wp13)
+    ;(structure_located wp14)
+    ;(structure_located wp31)
+    ;(structure_located wp32)
+    ;(structure_located wp33)
+    ;(structure_located wp34)
+    ;(structure_located wp41)
+    ;(structure_located wp42)
+    ;(structure_located wp43)
+    ;(structure_located wp44)
+    ;(structure_located wp51)
+    ;(structure_located wp52)
+    ;(structure_located wp53)
+    ;(structure_located wp54)
+    ;(structure_located wp61)
+    ;(structure_located wp62)
+    ;(structure_located wp63)
+    ;(structure_located wp64)
+    ;(structure_located wp71)
+    ;(structure_located wp72)
+    ;(structure_located wp73)
+    ;(structure_located wp74)
+    ;(structure_located wp81)
+    ;(structure_located wp82)
+    ;(structure_located wp83)
+    ;(structure_located wp84)
+    ;(structure_located wp85)
+
+    ;(valve_sensed wp12)
+    ;(valve_sensed wp32)
+    ;(valve_sensed wp42)
+    ;(valve_sensed wp52)
+    ;(valve_sensed wp62)
+    ;(valve_sensed wp72)
+    ;(valve_sensed wp82)
+
+    ;(valve_manipulated wp12)
+    ;(valve_manipulated wp32)
+    ;(valve_manipulated wp42)
+    ;(valve_manipulated wp52)
+    ;(valve_manipulated wp62)
+    ;(valve_manipulated wp72)
+    ;(valve_manipulated wp82)
+
+    ;(image_taken wp54)
+    ;(image_taken wp64)
+    ;(image_taken wp84)
+    ;(image_taken wp54)
+    ;(image_taken wp64)
+    ;(image_taken wp84)
+    ;(image_taken wp35)
+    ;(image_taken wp45)
+    ;(image_taken wp55)
+    ;(image_taken wp65)
+    ;(image_taken wp75)
+
+    (soil_inspected wp35)
+    (soil_inspected wp45)
+    (soil_inspected wp55)
+    (soil_inspected wp65)
     (soil_inspected wp75)
-    (rock_inspected wp85)
-    (rock_inspected wp54)
-    (valve_manipulated wp12)
-    (valve_manipulated wp32)
-    (valve_manipulated wp42)
-    (image_taken wp54)
-    (image_taken wp64)
-    (image_taken wp84)
+
+    (rock_inspected wp35)
+    (rock_inspected wp45)
+    (rock_inspected wp55)
+    (rock_inspected wp65)
+    (rock_inspected wp75)
+
 
 ))
 )
-
-
-

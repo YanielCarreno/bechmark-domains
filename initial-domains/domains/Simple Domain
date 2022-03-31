@@ -1,0 +1,151 @@
+(define (domain environment_simple)
+
+(:requirements :strips :typing :fluents :numeric-fluents :disjunctive-preconditions :durative-actions :action-costs :negative-preconditions)
+
+(:types
+	waypoint
+        robot
+        observation_point
+	sensors
+)
+(:predicates
+	(robot_at ?r - robot ?wp - waypoint)
+	(dock_at ?wp - waypoint)
+        (control_centre_at ?wp -waypoint)
+        (observation_at ?o - observation_point ?wp - waypoint)
+	(scan_sensor_free ?s - sensors)
+	
+        (undocked ?r - robot)
+	(docked ?r - robot)
+        (send_sample_data ?wp -waypoint)
+        (take_sample_data ?r -robot ?o -observation_point ?wp -waypoint)
+
+        (visited ?wp - waypoint)
+        (ob-explored ?o -observation_point)
+        (sample_data_obtained ?o - observation_point)
+        (scan_measured ?o - observation_point)
+   	(rotated ?r - robot ?o - observation_point)
+)
+
+(:functions
+        (distance ?wp1 ?wp2 - waypoint)
+        (total-distance)
+	(energy_capacity ?r - robot)
+        (consumption_rate ?r - robot)
+	(energy ?r - robot)
+
+        (sample_data ?r - robot)
+        (sample_data_capacity ?r - robot)
+        (observation_point_need_data ?o -observation_point)
+        
+;;observation_point_need_data & observation_point_need_image  are associated
+;;with the requirement to take information of the data sample of images in
+;;particular points.
+
+)
+
+;; Move between any two waypoints, avoiding terrain 
+(:durative-action navigate
+	:parameters (?r - robot ?from ?to - waypoint)
+	:duration ( = ?duration (* (distance ?from ?to) 5))
+	:condition (and
+		(at start (robot_at ?r ?from))
+                (at start (undocked ?r))
+                (at start (>= (energy ?r) (+ (* (distance ?from ?to)(consumption_rate ?r)) 10))))
+	:effect (and
+		(at end (visited ?to))
+                (at end (robot_at ?r ?to))
+                (at start (not (robot_at ?r ?from)))
+                (at end (decrease (energy ?r)(* (distance ?from ?to)(consumption_rate ?r))))
+		(at end (increase (total-distance) (distance ?from ?to))))
+)
+
+;; explore the observation point
+(:durative-action explore_ob
+	:parameters (?r - robot  ?wp - waypoint ?o - observation_point)
+	:duration ( = ?duration  40)
+	:condition (and
+	       (over all (robot_at ?r ?wp))
+   	       (over all (observation_at ?o  ?wp))
+               (at start (>= (energy ?r)  20)))
+	:effect (and
+		(at end (ob-explored  ?o))
+	        (at end (rotated ?r ?o))
+                (at end (robot_at ?r ?wp))
+                (at end (decrease (energy ?r) 5))
+                (at end (increase (total-distance) 2)))
+
+)
+
+;; Dock to charge 
+(:durative-action dock
+	:parameters (?r - robot ?from ?to - waypoint)
+	:duration ( = ?duration (+ (* (distance ?from ?to) 5) 50))
+	:condition (and
+		(over all (dock_at ?to))
+		(at start (robot_at ?r ?from))
+		(at start (undocked ?r))
+                (at start (>= (energy ?r)(*(distance ?from ?to)(consumption_rate ?r))))
+                (at start (< (energy ?r)(* (energy_capacity ?r) 0.4))))
+	:effect (and
+		(at end (docked ?r))
+		(at start (not (undocked ?r)))
+                (at end (robot_at ?r ?to))
+                (at start (not (robot_at ?r ?from)))
+                (at end (assign (energy ?r)(energy_capacity ?r))))
+)
+
+(:durative-action undock
+	:parameters (?r - robot_explorer ?wp -waypoint)
+	:duration ( = ?duration 10)
+	:condition (and
+		(over all (dock_at ?wp))
+		(at start (docked ?r)))
+	:effect (and
+		(at start (not (docked ?r)))
+		(at end (undocked ?r)))
+)
+
+;; this two durative-action functions are associated with the transmission of the information
+;; it makes the information transmission
+
+(:durative-action send-sample_data
+	:parameters (?r - robot ?wp - waypoint)
+	:duration ( = ?duration 60)
+	:condition (and
+		(over all (robot_at ?r ?wp))
+		(over all (control_centre_at ?wp))
+		(at start (>= (sample_data ?r) (* (sample_data_capacity ?r) 0.7))))
+	:effect (and
+		(at end (assign (sample_data ?r) 0)))
+)
+
+;; the next three acctions are associated with the implementation of the data reading and camera
+;; the function will allow te camera tp take a number of pictures.
+
+(:durative-action take-sample_data
+	:parameters (?r - robot ?o - observation_point ?wp - waypoint ?s - sensors)
+	:duration ( = ?duration 30)
+	:condition (and
+		(over all (robot_at ?r ?wp))
+		(over all (observation_at ?o  ?wp))
+		(over all (ob-explored  ?o))
+		(at start (scan_sensor_free ?s))
+		(at start (> (observation_point_need_data ?o) 0))
+                (at start (< (sample_data ?r)(* (sample_data_capacity ?r) 0.7))))
+	:effect (and
+ 	        (at start (not (available ?r)))
+	        (at start (not (scan_sensor_free ?s)))
+                (at end (scan_sensor_free ?s))
+		(at end (sample_data_obtained ?o))
+		(at end (increase (sample_data ?r) (observation_point_need_data ?o))))
+)
+;; this actions establish the effect when in a particular point
+;; sample_data or image_sample are not required
+
+(:action check-sample_data
+  :parameters (?wp -waypoint ?o -observation_point)
+  :precondition (= (observation_point_need_data ?o) 0)
+  :effect   (sample_data_obtained ?o)
+)
+)
