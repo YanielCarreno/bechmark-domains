@@ -1056,14 +1056,29 @@
 
 )
 (:goal (and
-       (valve_closed  wp30)
-       (bla_cleaned wp40)
 
-       (recovered auv0 wp0)
-       (recovered auv1 wp1)
-       (recovered auv2 wp2)
-       (recovered auv3 wp3)
-       (recovered auv4 wp4)
+    (valve_closed  wp30)
+    (valve_closed  wp31)
+
+    (valve_sensed  wp61)
+    (valve_sensed  wp62)
+    (valve_sensed  wp63)
+    (valve_sensed  wp64)
+    (valve_sensed  wp71)
+
+    (bla_inspected wp13)
+    (bla_inspected wp14)
+    (bla_inspected wp51)
+    (bla_inspected wp52)
+
+    (bla_cleaned wp40)
+    (bla_cleaned wp41)
+
+    (recovered auv0 wp0)
+    (recovered auv1 wp1)
+    (recovered auv2 wp2)
+    (recovered auv3 wp3)
+    (recovered auv4 wp4)
 
 ))
 (:metric minimize (total-time))

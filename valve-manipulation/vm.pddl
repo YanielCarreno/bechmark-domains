@@ -36,6 +36,7 @@
              (valve_sensed ?wp - waypoint)
              (valve_manipulated ?wp - waypoint)
 )
+
 (:functions
             (cr_rate_a ?r - robot)
             (cr_rate_sd ?r - robot)
@@ -234,12 +235,12 @@
           (at start (<= (energy ?ru) 80))
           )
 :effect (and
-        (at start (not (available ?ru)))
-        (at start (not (available ?rs)))
-        (at end   (available ?ru))
-        (at end   (available ?rs))
-        (at end   (increase (energy ?ru) (* ?duration (recharge_rate ?ru))))
-        )
+         (at start (not (available ?ru)))
+         (at start (not (available ?rs)))
+         (at end   (available ?ru))
+         (at end   (available ?rs))
+         (at end   (increase (energy ?ru) (* ?duration (recharge_rate ?ru))))
+         )
 )
 
 (:durative-action brodcast-data
