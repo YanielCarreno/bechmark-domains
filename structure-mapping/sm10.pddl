@@ -1,5 +1,5 @@
 (define (problem structure-mapping)
-(:domain sm0)
+(:domain sm10)
 (:objects
     bluerov2-0 bluerov2-1 - robot
     wp0 wp10 wp11 wp12 wp13 wp14 wp15 wp16 wp17 wp18 wp19 wp20
@@ -419,17 +419,18 @@
 
 )
 (:goal (and
-  
-  (section_mapped wp24)
-  (section_mapped wp25)
-  (section_mapped wp26)
-  (section_mapped wp27)
-  (section_mapped wp28)
-  (section_mapped wp29)
-  (section_mapped wp30)
-  (section_mapped wp31)
-  (section_mapped wp32)
-  (section_mapped wp33)
+
+  (sensor_inspected wp15)
+  (sensor_inspected wp20)
+  (sensor_inspected wp25)
+  (sensor_inspected wp30)
+  (sensor_inspected wp33)
+
+  (sensor_identified wp15)
+  (sensor_identified wp20)
+  (sensor_identified wp25)
+  (sensor_identified wp30)
+  (sensor_identified wp33)
 
   (recovered bluerov2-0 wp0)
   (recovered bluerov2-1 wp0)

@@ -1,4 +1,4 @@
-(define (problem vm0)
+(define (problem vm9)
 (:domain valve-manipulation)
 (:objects
 

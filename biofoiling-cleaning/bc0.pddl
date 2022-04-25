@@ -1,4 +1,4 @@
-(define (problem bc1)
+(define (problem bc0)
 (:domain biofouling-cleaning)
 (:objects
     auv0 auv1 auv2 auv3 auv4 asv0 asv1 asv2 - robot
@@ -1056,21 +1056,14 @@
 
 )
 (:goal (and
+       (valve_closed  wp30)
+       (bla_cleaned wp40)
 
-    (valve_closed  wp30)
-    (valve_closed  wp31)
-    (valve_closed  wp32)
-    (valve_closed  wp71)
-
-    (valve_sensed  wp30)
-    (valve_sensed  wp31)
-    (valve_sensed  wp71)
-
-    (recovered auv0 wp0)
-    (recovered auv1 wp1)
-    (recovered auv2 wp2)
-    (recovered auv3 wp3)
-    (recovered auv4 wp4)
+       (recovered auv0 wp0)
+       (recovered auv1 wp1)
+       (recovered auv2 wp2)
+       (recovered auv3 wp3)
+       (recovered auv4 wp4)
 
 ))
 (:metric minimize (total-time))

@@ -419,17 +419,18 @@
 
 )
 (:goal (and
-  
-  (section_mapped wp24)
-  (section_mapped wp25)
-  (section_mapped wp26)
-  (section_mapped wp27)
-  (section_mapped wp28)
-  (section_mapped wp29)
-  (section_mapped wp30)
-  (section_mapped wp31)
-  (section_mapped wp32)
-  (section_mapped wp33)
+
+  (structure_located wp23)
+  (structure_located wp24)
+  (structure_located wp25)
+  (structure_located wp26)
+  (structure_located wp27)
+  (structure_located wp28)
+  (structure_located wp29)
+  (structure_located wp30)
+  (structure_located wp31)
+  (structure_located wp32)
+  (structure_located wp33)
 
   (recovered bluerov2-0 wp0)
   (recovered bluerov2-1 wp0)

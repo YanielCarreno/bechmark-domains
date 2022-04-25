@@ -1,4 +1,4 @@
-(define (problem bc0)
+(define (problem bc9)
 (:domain biofouling-cleaning)
 (:objects
     auv0 auv1 auv2 auv3 auv4 asv0 asv1 asv2 - robot

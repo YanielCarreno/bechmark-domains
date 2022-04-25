@@ -1,5 +1,5 @@
 (define (problem structure-mapping)
-(:domain sm0)
+(:domain sm1)
 (:objects
     bluerov2-0 bluerov2-1 - robot
     wp0 wp10 wp11 wp12 wp13 wp14 wp15 wp16 wp17 wp18 wp19 wp20
@@ -419,17 +419,21 @@
 
 )
 (:goal (and
-  
-  (section_mapped wp24)
-  (section_mapped wp25)
-  (section_mapped wp26)
-  (section_mapped wp27)
-  (section_mapped wp28)
-  (section_mapped wp29)
-  (section_mapped wp30)
-  (section_mapped wp31)
-  (section_mapped wp32)
-  (section_mapped wp33)
+
+  (section_mapped wp10)
+  (section_mapped wp11)
+  (section_mapped wp12)
+  (section_mapped wp13)
+  (section_mapped wp14)
+  (section_mapped wp15)
+  (section_mapped wp16)
+  (section_mapped wp17)
+  (section_mapped wp18)
+  (section_mapped wp19)
+  (section_mapped wp20)
+  (section_mapped wp21)
+  (section_mapped wp22)
+  (section_mapped wp23)
 
   (recovered bluerov2-0 wp0)
   (recovered bluerov2-1 wp0)

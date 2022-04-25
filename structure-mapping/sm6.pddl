@@ -1,5 +1,5 @@
 (define (problem structure-mapping)
-(:domain sm0)
+(:domain sm6)
 (:objects
     bluerov2-0 bluerov2-1 - robot
     wp0 wp10 wp11 wp12 wp13 wp14 wp15 wp16 wp17 wp18 wp19 wp20
@@ -94,11 +94,11 @@
     (sensor_damaged sp20)
     (sensor_damaged sp23)
 
-    ;(sensor_identified wp15)
-    ;(sensor_identified wp20)
-    ;(sensor_identified wp25)
-    ;(sensor_identified wp30)
-    ;(sensor_identified wp33)
+    (sensor_identified wp15)
+    (sensor_identified wp20)
+    (sensor_identified wp25)
+    (sensor_identified wp30)
+    (sensor_identified wp33)
 
     ;(low_visibility sp5)
     ;(low_visibility sp10)
@@ -106,11 +106,11 @@
     ;(low_visibility sp20)
     ;(low_visibility sp23)
 
-     (strong_current sp5)
-     (strong_current sp10)
-     (strong_current sp15)
-     (strong_current sp20)
-     (strong_current sp23)
+     ;(strong_current sp5)
+     ;(strong_current sp10)
+     ;(strong_current sp15)
+     ;(strong_current sp20)
+     ;(strong_current sp23)
 
     (structure_ob_point wp10)
     (structure_ob_point wp11)
@@ -159,7 +159,6 @@
     (docking_point_free wp50)
     (docking_point_free wp51)
     (docking_point_free wp52)
-
 
     (connected wp10 wp11)
     (connected wp11 wp12)
@@ -419,17 +418,12 @@
 
 )
 (:goal (and
-  
-  (section_mapped wp24)
-  (section_mapped wp25)
-  (section_mapped wp26)
-  (section_mapped wp27)
-  (section_mapped wp28)
-  (section_mapped wp29)
-  (section_mapped wp30)
-  (section_mapped wp31)
-  (section_mapped wp32)
-  (section_mapped wp33)
+
+  (sensor_replaced wp15)
+  (sensor_replaced wp20)
+  (sensor_replaced wp25)
+  (sensor_replaced wp30)
+  (sensor_replaced wp33)
 
   (recovered bluerov2-0 wp0)
   (recovered bluerov2-1 wp0)
