@@ -146,6 +146,44 @@
         )
 )
 
+(:durative-action relocalisation
+  :parameters (?r - robot  ?p - poi ?wp - waypoint)
+  :duration ( = ?duration (relocalisation_dur))
+  :condition (and
+             (over all (at ?r ?wp))
+             (over all (poi_at ?p ?wp))
+             (at start (available ?r))
+             (at start (structure_located ?wp))
+             (at start (strong_current ?p))
+             (at start (>= (energy ?r) (* (relocalisation_dur) (cr_rate_sc ?r))))
+             )
+  :effect (and
+          (at start (not (available ?r)))
+          (at end   (sensor_identified ?wp))
+          (at end   (available ?r))
+          (at end   (decrease (energy ?r) (* ?duration (cr_rate_sc ?r))))
+          )
+)
+
+(:durative-action increase-light
+  :parameters (?r - robot  ?p - poi ?wp - waypoint)
+  :duration ( = ?duration (increase_light_dur))
+  :condition (and
+             (over all (at ?r ?wp))
+             (over all (poi_at ?p ?wp))
+             (at start (available ?r))
+             (at start (structure_located ?wp))
+             (at start (low_visibility ?p))
+             (at start (>= (energy ?r) (* (increase_light_dur) (cr_rate_sc ?r))))
+             )
+  :effect (and
+          (at start (not (available ?r)))
+          (at end   (sensor_identified ?wp))
+          (at end   (available ?r))
+          (at end   (decrease (energy ?r) (* ?duration (cr_rate_sc ?r))))
+          )
+)
+
 (:durative-action navigate
 :parameters (?r - robot ?wpi  ?wpf - waypoint)
 :duration ( = ?duration (+ (* (/ (distance ?wpi ?wpf) (speed ?r)) 2) 0.01))
@@ -215,43 +253,5 @@
         (at end   (not (available ?r)))
         (at end   (recovered ?r ?wp))
         )
-)
-
-(:durative-action relocalisation
-  :parameters (?r - robot  ?p - poi ?wp - waypoint)
-  :duration ( = ?duration (relocalisation_dur))
-  :condition (and
-             (over all (at ?r ?wp))
-             (over all (poi_at ?p ?wp))
-             (at start (available ?r))
-             (at start (structure_located ?wp))
-             (at start (strong_current ?p))
-             (at start (>= (energy ?r) (* (relocalisation_dur) (cr_rate_sc ?r))))
-             )
-  :effect (and
-          (at start (not (available ?r)))
-          (at end   (sensor_identified ?wp))
-          (at end   (available ?r))
-          (at end   (decrease (energy ?r) (* ?duration (cr_rate_sc ?r))))
-          )
-)
-
-(:durative-action increase-light
-  :parameters (?r - robot  ?p - poi ?wp - waypoint)
-  :duration ( = ?duration (increase_light_dur))
-  :condition (and
-             (over all (at ?r ?wp))
-             (over all (poi_at ?p ?wp))
-             (at start (available ?r))
-             (at start (structure_located ?wp))
-             (at start (low_visibility ?p))
-             (at start (>= (energy ?r) (* (increase_light_dur) (cr_rate_sc ?r))))
-             )
-  :effect (and
-          (at start (not (available ?r)))
-          (at end   (sensor_identified ?wp))
-          (at end   (available ?r))
-          (at end   (decrease (energy ?r) (* ?duration (cr_rate_sc ?r))))
-          )
 )
 )

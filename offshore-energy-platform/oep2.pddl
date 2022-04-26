@@ -1,5 +1,5 @@
 (define (problem offshore-energy-platform)
-(:domain oep0)
+(:domain oep2)
 (:objects
     husky0 husky1 husky2 husky3 uav0 uav1 - robot
     wpg0 wpg1 wpg2 wpg3 wpg4 wpg5 wpg10 wpg11 wpg12 wpg13 wpg14 wpg30
@@ -3053,24 +3053,37 @@
 )
 (:goal (and
 
-       (image_taken wpg31)
-       (image_taken wpg32)
-       (image_taken wpg33)
-       (image_taken wpg34)
        (image_taken wpg35)
        (image_taken wpg41)
        (image_taken wpg42)
+       (image_taken wpg43)
+       (image_taken wpg75)
+       (image_taken wpg81)
+       (image_taken wpg82)
+       (image_taken wpg83)
+       (image_taken wpg84)
+       (image_taken wpg85)
 
+       (image_taken wpa10)
+       (image_taken wpa11)
+       (image_taken wpa12)
+       (image_taken wpa13)
+       (image_taken wpa14)
+       (image_taken wpa15)
        (image_taken wpa16)
        (image_taken wpa17)
        (image_taken wpa18)
 
-       (valve_sensed  wpg12)
-       (valve_sensed  wpg13)
+       (point_inspected wpa19)
+       (point_inspected wpa20)
+       (point_inspected wpa21)
+       (point_inspected wpa22)
+       (point_inspected wpa23)
+       (point_inspected wpa24)
+       (point_inspected wpa25)
+       (point_inspected wpa26)
 
-       (valve_manipulated  wpg52)
-       (valve_manipulated  wpg53)
-       (valve_manipulated  wpg63)
+
 
 ))
 (:metric minimize (total-time))
