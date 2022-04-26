@@ -1,7 +1,6 @@
 (define (domain auvs_inspection)
 (:requirements :strips :typing :fluents :negative-preconditions :disjunctive-preconditions :durative-actions :duration-inequalities :universal-preconditions )
 (:types
-
   robot
   waypoint
   sensor
@@ -17,14 +16,14 @@
              (available ?r - robot)
              (can_manipulate ?r - robot ?a - actuator)
              (can_grasp ?r - robot ?a - actuator)
-             (can_visualise ?r - robot ?s - sensor) 
-             
+             (can_visualise ?r - robot ?s - sensor)
+
 
              (component_required ?c - component)
              (shelve_collected  ?r - robot ?c - component)
              (shelve_full ?c - component)
              (yellow_shelve_at ?c - component ?wp -waypoint)
-             (green_shelve_at ?c - component ?wp -waypoint)             
+             (green_shelve_at ?c - component ?wp -waypoint)
              (is_cap ?c - component)
              (is_label ?c - component)
              (is_bottle ?c - component)
@@ -59,14 +58,26 @@
             (data_capacity ?r - robot)
             (energy ?r - robot)
             (recharge_rate ?r - robot)
-            
+
+            (cr_rate_a ?r - robot)
+            (cr_rate_sd ?r - robot)
+            (cr_rate_sc ?r - robot)
+            (collect_shelve_dur)
+            (deliver_shelve_dur)
+            (process_dur)
+            (check_parameters_dur)
+            (sense_flow_dur)
+            (regulate_flow_dur)
+            (position_arm_dur)
+            (communicate_dur)
+
 )
 
 
 (:durative-action collect-shelve
 :parameters (?r - robot ?wp - waypoint ?a - actuator ?c - component)
 :duration ( = ?duration 3)
-:condition (and    
+:condition (and
            (over all (can_grasp ?r ?a))
            (over all (at ?r ?wp))
            (over all (yellow_shelve_at ?c ?wp))
@@ -106,8 +117,8 @@
         (at start (not (available ?r)))
         (at start (shelve_collected ?r ?c))
         (at start (not (free_point ?wp)))
-        (at end   (not (shelve_collected ?r ?c)))   
-        (at end   (not (arm_positioned ?r ?wp)))     
+        (at end   (not (shelve_collected ?r ?c)))
+        (at end   (not (arm_positioned ?r ?wp)))
         (at end   (available ?r))
         (at end   (free_point ?wp))
         (at end   (shelve_full ?c))
@@ -125,7 +136,7 @@
            (at start (machine_available ?m))
            (over all (is_cap ?c1))
            (over all (is_label ?c2))
-           (over all (is_bottle ?c3)) 
+           (over all (is_bottle ?c3))
 
            )
 :effect (and
@@ -134,8 +145,8 @@
         (at start (not (shelve_full ?c3)))
         (at start (component_required ?c1))
         (at start (component_required ?c2))
-        (at start (component_required ?c3)) 
-        (at start (not (machine_available ?m)))      
+        (at start (component_required ?c3))
+        (at start (not (machine_available ?m)))
         (at end   (machine_available ?m))
         (at end   (product_packed ?p))
         )
@@ -200,7 +211,7 @@
         (at start (not (free_point ?wp)))
         (at end   (free_point ?wp))
         (at end   (available ?r))
-        (at end   (not (arm_positioned ?r ?wp)))     
+        (at end   (not (arm_positioned ?r ?wp)))
         (at end   (valve_regulated ?v))
         (at end   (decrease (energy ?r) 1))
         )
