@@ -178,7 +178,7 @@
            (at start (available ?rs))
            (at start (available ?ru))
            (at start (>= (data_acquired ?ru) (data_capacity ?ru)))
-           (at start (>= (energy ?ru) (* (sense_valve_dur) (cr_rate_sc ?ru))))
+           (at start (>= (energy ?ru) (* (broadcast_data_dur) (cr_rate_sc ?ru))))
            )
 :effect (and
         (at start (not (available ?rs)))

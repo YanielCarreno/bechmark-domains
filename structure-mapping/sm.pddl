@@ -7,6 +7,7 @@
   sensor
   actuator
 )
+
 (:predicates (at ?r - robot ?wp - waypoint)
              (poi_at ?p - poi ?wp - waypoint)
              (available ?r - robot)

@@ -1,5 +1,5 @@
 (define (problem manufacturing-plant)
-(:domain mp0)
+(:domain mp2)
 (:objects
     mr-1 mr-2 mr-3 mr-4 - robot
     wp0 wp1 wp2 wp3 wp4 wp5 wp6 wp7 wp8 wp9 wp10 wp11 wp12 wp13 wp14 wp15
@@ -14,7 +14,6 @@
     f1 f2 f3 f4  - flow
 
 )
-
 (:init
 
     (at mr-1 wp0)
@@ -1172,9 +1171,9 @@
     (= (cr_rate_sd mr-2) 0.030)
     (= (cr_rate_sc mr-2) 0.002)
 
-    (= (cr_rate_a  mr-3) 0.050)
-    (= (cr_rate_sd mr-3) 0.030)
-    (= (cr_rate_sc mr-3) 0.002)
+    (= (cr_rate_a  mr-3) 0.0050)
+    (= (cr_rate_sd mr-3) 0.0030)
+    (= (cr_rate_sc mr-3) 0.0042)
 
     (= (cr_rate_a  mr-4) 0.050)
     (= (cr_rate_sd mr-4) 0.030)
@@ -1190,10 +1189,10 @@
     (= (energy mr-3) 100)
     (= (energy mr-4) 100)
 
-    (= (data_capacity mr-1) 100)
-    (= (data_capacity mr-2) 100)
-    (= (data_capacity mr-3) 100)
-    (= (data_capacity mr-4) 100)
+    (= (data_capacity mr-1) 60)
+    (= (data_capacity mr-2) 60)
+    (= (data_capacity mr-3) 60)
+    (= (data_capacity mr-4) 60)
 
     (= (data_acquired mr-1) 0)
     (= (data_acquired mr-2) 0)
@@ -1212,23 +1211,29 @@
 )
 (:goal (and
 
+     (explored wp5)
+     (explored wp6)
+     (explored wp7)
 
-     (explored wp10)
-     (explored wp11)
-     (explored wp12)
-
-     (flow_acquired wp20)
-     (flow_acquired wp21)
-     (flow_acquired wp22)
-
+     (flow_acquired wp26)
+     (flow_acquired wp27)
+     (flow_acquired wp28)
+     (flow_acquired wp29)
 
      (valve_regulated wp20)
      (valve_regulated wp21)
      (valve_regulated wp22)
      (valve_regulated wp23)
-
+     (valve_regulated wp24)
+     (valve_regulated wp25)
+     (valve_regulated wp26)
+     (valve_regulated wp27)
+     (valve_regulated wp28)
+     (valve_regulated wp29)
 
      (parameters_checked wp26)
+     (parameters_checked wp27)
+     (parameters_checked wp28)
 
 
 ))

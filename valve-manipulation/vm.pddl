@@ -8,6 +8,7 @@
   actuator
   state
 )
+
 (:predicates (at ?r - robot ?wp - waypoint)
              (available ?r - robot)
              (can_manipulate ?r - robot ?a - actuator)

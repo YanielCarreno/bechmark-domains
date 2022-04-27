@@ -14,7 +14,6 @@
     f1 f2 f3 f4  - flow
 
 )
-
 (:init
 
     (at mr-1 wp0)
@@ -63,10 +62,6 @@
     (charge_point_at wp13)
     (charge_point_at wp14)
     (charge_point_at wp15)
-
-    ;(shelve_full wp5 cap)
-    ;(shelve_full wp6 label)
-    ;(shelve_full wp7 bottle)
 
     (is_cap cap)
     (is_label label)
@@ -1212,6 +1207,9 @@
 )
 (:goal (and
 
+     (explored wp5)
+     (explored wp6)
+     (explored wp7)
 
      (explored wp10)
      (explored wp11)
@@ -1220,16 +1218,43 @@
      (flow_acquired wp20)
      (flow_acquired wp21)
      (flow_acquired wp22)
-
+     (flow_acquired wp23)
+     (flow_acquired wp24)
+     (flow_acquired wp25)
+     (flow_acquired wp26)
+     (flow_acquired wp27)
+     (flow_acquired wp28)
+     (flow_acquired wp29)
 
      (valve_regulated wp20)
      (valve_regulated wp21)
      (valve_regulated wp22)
      (valve_regulated wp23)
-
+     (valve_regulated wp24)
+     (valve_regulated wp25)
+     (valve_regulated wp26)
+     (valve_regulated wp27)
+     (valve_regulated wp28)
+     (valve_regulated wp29)
 
      (parameters_checked wp26)
+     (parameters_checked wp27)
+     (parameters_checked wp28)
+     (parameters_checked wp29)
+     (parameters_checked wp29)
+     (parameters_checked wp30)
+     (parameters_checked wp31)
 
+     (product_packed p1)
+     (product_packed p2)
+     (product_packed p3)
+     (product_packed p4)
+     (product_packed p5)
+     (product_packed p6)
+     (product_packed p7)
+     (product_packed p8)
+     (product_packed p9)
+     (product_packed p10)
 
 ))
 )

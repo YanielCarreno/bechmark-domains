@@ -14,6 +14,7 @@
     l0 l1 - sensor
     arm0 arm1 arm2 arm3 - actuator
 )
+
 (:init
     (at husky0 wpg0)
     (at husky1 wpg1)

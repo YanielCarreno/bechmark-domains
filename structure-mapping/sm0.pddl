@@ -13,6 +13,7 @@
     s0 s1 - sensor
     arm0 arm1 - actuator
 )
+
 (:init
     (at bluerov2-0 wp0)
     (at bluerov2-1 wp0)
@@ -419,7 +420,7 @@
 
 )
 (:goal (and
-  
+
   (section_mapped wp24)
   (section_mapped wp25)
   (section_mapped wp26)
